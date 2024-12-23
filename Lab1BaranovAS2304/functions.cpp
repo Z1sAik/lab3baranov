@@ -6,7 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
-
+#include "connections.h"
 using namespace std;
 
 int menu() {
@@ -20,10 +20,15 @@ int menu() {
             << "5) Редактировать КС" << endl
             << "6) Сохранить данные" << endl
             << "7) Загрузить данные" << endl
-            << "8) Удаление объектов" << endl
+            << "8) Соединить трубу и КС в газотранспортную сеть" << endl
+            << "9) Показать газотранспортную сеть" << endl
+            << "10) Удалить сеть" << endl
+            << "11) Топологическая сортировка" << endl
+            << "12) Удаление трубы" << endl
+            << "13) Удаление станции" << endl
             << "0) Выход" << endl
-            << "Введите команду которую вы бы хотели выполнить(от 0 до 8): ";
-        k = check<int>(0, 9);
+            << "Введите команду которую вы бы хотели выполнить(от 0 до 13): ";
+        k = check<int>(0, 13);
         return k;
     }
 }
@@ -35,7 +40,7 @@ string get_line(istream& in) {
     return input;
 }
 
-void save(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations) {
+void save(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations, unordered_map<int, connections>& Conns) {
     string filename;
     cout << "Введите имя файла для сохранения: ";
     filename = get_line(cin);
@@ -49,6 +54,9 @@ void save(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station
         out << "data CS:" << endl;
         saveMap(out, Stations);
         out << "end data" << endl;
+        out << "data Conns:" << endl;
+        saveMap(out, Conns);
+        out << "end data" << endl;
         cout << "Данные сохранены в файл: " << filename << endl;
     }
     else {
@@ -57,7 +65,7 @@ void save(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station
     out.close();
 }
 
-void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations) {
+void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations, unordered_map<int, connections>& Conns) {
     string filename;
     cout << "Введите имя файла для загрузки: ";
     filename = get_line(cin);
@@ -75,6 +83,7 @@ void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station
     compressor_station::resetMaxID();
     Stations.clear();
     Pipes.clear();
+    Conns.clear();
     string line;
     while (getline(in >> ws, line)) {
         if (line == "data Pipe:") {
@@ -83,6 +92,15 @@ void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station
         if (line == "data CS:") {
             loadMap(in, Stations);
         }
+        else if (line == "data Conns:") {
+            while (getline(in, line) && line != "end data") {
+                if (line.empty()) continue;
+                connections conn0;
+                stringstream ss(line);
+                ss >> conn0;
+                Conns.insert({ conn0.id_entry, conn0 });
+            }
+        }
     }
     if (!Pipes.empty() || !Stations.empty()) {
         cout << "Данные загружены из файла: " << filename << endl;
@@ -90,6 +108,7 @@ void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station
 
     in.close();
 }
+
 
 bool filterByNameP(const Pipe& P, string name) {
     size_t pos = P.getName().find(name);
@@ -168,23 +187,6 @@ void edit(unordered_map<int, Pipe>& Pipes, int id)
         cout << "Нет объектов для редактирования!" << endl;
     }
 }
-
-void deleteAll(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations){
-    if (Pipes.empty() && Stations.empty())
-    {
-        cout << "Вы ещё не добавили ни одного объекта!" << endl;
-        return;
-    }
-    else {
-        Pipe::resetMaxID();
-        compressor_station::resetMaxID();
-        Pipes.clear();
-        Stations.clear();
-        cout << "Все объекты были удалены" << endl;
-    }
-    return;
-}
-
 
 void edit(unordered_map<int, compressor_station>& Stations, int id) {
     if (!Stations.empty()) {

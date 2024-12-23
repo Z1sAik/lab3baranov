@@ -13,8 +13,11 @@ private:
     static int maxID;
     string Name; //название трубы
     float length; //километры 
-    int diameter; //миллиметры
+    int diameter = 0; //миллиметры
     bool repair; //признак "в ремонте"
+    int CSid1 = 0;
+    int CSid2 = 0;
+    bool free = 1;
 
 public:
     Pipe() : id(0), Name(""), length(0.0f), diameter(0), repair(false) {
@@ -40,6 +43,12 @@ public:
     static void resetMaxID();
     static Pipe newPipe();
     void editPipe();
+    int GetCSid1() const;
+    int GetCSid2() const;
+    bool Get_free();
+    void Set_free(bool status);
+    int GetDiameter() const;
+    void SetDiameter(int diam);
     string getName() const {
         return Name;
     }

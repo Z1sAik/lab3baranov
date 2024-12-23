@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "CS.h"
 #include "Pipe.h"
+#include "connections.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -216,10 +217,9 @@ public:
 };
 
 int menu();
-void deleteAll(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations);
 string get_line(istream& in);
-void save(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations);
-void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations);
+void save(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations, unordered_map<int, connections>& Conns);
+void load(unordered_map<int, Pipe>& Pipes, unordered_map<int, compressor_station>& Stations, unordered_map<int, connections>& Conns);
 unordered_set<int> selectByChosenFilter(unordered_map<int, Pipe>& Pipes);
 unordered_set<int> selectByChosenFilter(unordered_map<int, compressor_station>& Stations);
 void edit(unordered_map<int, compressor_station>& Stations, int id);

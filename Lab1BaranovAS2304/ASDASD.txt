@@ -1,0 +1,53 @@
+data Pipe:
+1
+My pipe
+100
+500
+0
+2
+My pipe
+120
+10
+0
+3
+My pipe
+120
+1000
+0
+4
+Mytasd
+10
+1000
+1
+5
+asd
+1
+500
+0
+end data
+data CS:
+1
+Mtcas
+120
+10
+10
+2
+MASFD
+10
+1
+100
+3
+ASd
+10
+2
+100
+4
+ASDaSD
+10
+1
+100
+end data
+data Conns:
+1 5 2
+3 3 4
+end data

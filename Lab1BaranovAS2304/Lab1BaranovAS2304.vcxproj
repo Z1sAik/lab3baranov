@@ -128,12 +128,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Connect.cpp" />
     <ClCompile Include="CS.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="Lab1BaranovAS2304.cpp" />
     <ClCompile Include="Pipe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Connect.h" />
+    <ClInclude Include="connections.h" />
     <ClInclude Include="CS.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="Pipe.h" />

@@ -1,0 +1,27 @@
+data Pipe:
+1
+My pipe
+120
+10
+0
+2
+My pipe
+120
+700
+0
+end data
+data CS:
+1
+My cs
+120
+10
+100
+2
+My cs
+120
+100
+1
+end data
+data Conns:
+1 2 2
+end data

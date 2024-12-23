@@ -71,5 +71,26 @@ void Pipe::editPipe()
     repair = !repair;
 }
 
+int Pipe::GetCSid1() const {
+    return CSid1;
+}
 
+int Pipe::GetCSid2() const {
+    return CSid2;
+}
 
+bool Pipe::Get_free() {
+    return free;
+}
+
+void Pipe::Set_free(bool status) {
+    free = status;
+}
+
+void Pipe::SetDiameter(int diam) {
+    diameter = diam;
+}
+int Pipe::GetDiameter() const
+{
+    return diameter;
+}

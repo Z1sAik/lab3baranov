@@ -89,4 +89,20 @@ bool compressor_station::stopworkshop()
         return 0;
 }
 
+int compressor_station::Get_Id_in() const {
+    return id_in;
+}
+
+int compressor_station::Get_Id_out() const {
+    return id_out;
+
+}
+
+void compressor_station::Set_Id_in(int in) {
+    id_in = in;
+}
+
+void compressor_station::Set_Id_out(int out) {
+    id_out = out;
+}
 

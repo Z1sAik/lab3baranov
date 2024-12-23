@@ -14,6 +14,8 @@ private:
     int workshops; //Кол-во цехов
     int workshopsinwork; //Кол-во цехов в работе
     int effectiveness; //Коэфф. эффективности
+    int id_in = 0;
+    int id_out = 0;
 
 public:
     compressor_station() :id(0), Name(""), workshops(0), workshopsinwork(0), effectiveness(0) {
@@ -34,6 +36,10 @@ public:
     static void resetMaxID();
     bool runworkshop();
     bool stopworkshop();
+    int Get_Id_in() const;
+    int Get_Id_out() const;
+    void Set_Id_in(int in);
+    void Set_Id_out(int out);
     int getID()
     {
         return id;
