@@ -1,0 +1,24 @@
+data Pipe:
+12312
+My pipe
+10
+10
+0
+2
+My pie
+120
+10
+0
+end data
+data CS:
+1
+Mcs
+10
+1
+100
+2134
+MASD
+1000
+10
+10
+end data
