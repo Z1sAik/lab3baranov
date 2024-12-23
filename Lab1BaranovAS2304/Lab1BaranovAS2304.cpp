@@ -49,7 +49,7 @@ int main() {
                 cout << "Все компрессорные станции:" << endl; 
                 view(Stations);
             }
-        }
+        } 
         else if (k == 4) {
             selectObjects(Pipes);
         }
